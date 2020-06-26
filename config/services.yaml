@@ -32,3 +32,11 @@ services:
             entity: App\Entity\User,
             event: prePersist,
             }
+
+    App\Doctrine\Listener\RecipeOwnerListener:
+        tags:
+            - {
+                name: doctrine.orm.entity_listener,
+                entity: App\Entity\Recipe,
+                event: prePersist,
+            }

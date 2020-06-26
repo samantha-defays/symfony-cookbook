@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\RecipeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
+ * @ORM\HasLifecycleCallbacks
+ * @ApiResource
  */
 class Recipe
 {
@@ -16,51 +20,61 @@ class Recipe
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"recipe"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"recipe"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"recipe"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"recipe"})
      */
     private $ingredients;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"recipe"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"recipe"})
      */
     private $preparationTime;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"recipe"})
      */
     private $cookingTime;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"recipe"})
      */
     private $utensils;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"recipe"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"recipe"})
      */
     private $illustration;
 
@@ -72,6 +86,7 @@ class Recipe
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="recipes")
+     * @Groups({"recipe"})
      */
     private $categories;
 
@@ -179,6 +194,16 @@ class Recipe
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
     }
 
     public function getIllustration(): ?string

@@ -1,0 +1,6 @@
+App\Entity\User:
+  attributes:
+    denormalization_context:
+      groups: "users"
+  collectionOperations: [POST]
+  itemOperations: [GET, PUT]

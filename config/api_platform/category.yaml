@@ -1,0 +1,4 @@
+App\Entity\Category:
+  attributes:
+    normalization_context:
+      groups: "recipe"
