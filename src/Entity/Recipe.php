@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
@@ -27,36 +28,46 @@ class Recipe
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"recipe"})
+     * @Assert\NotBlank(message="Le nom de la recette est obligatoire")
+     * @Assert\Length(min=3, minMessage="Le nom de la recette ne peut pas faire moins de 3 caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"recipe"})
+     * @Assert\NotBlank(message="La description est obligatoire")
+     * @Assert\Length(min=10, minMessage="La description ne peut pas faire moins de 10 caractères")
      */
     private $description;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"recipe"})
+     * @Assert\NotBlank(message="La liste des ingrédients est nécessaire")
+     * @Assert\Length(min=10, minMessage="La description ne peut pas faire moins de 10 caractères")
      */
     private $ingredients;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"recipe"})
+     * @Assert\NotBlank(message="Le détail de la recette est obligatoire")
+     * @Assert\Length(min=10, minMessage="Une recette qui ferait moins de 10 caractères ne serait pas vraiment une recette, n'est-ce pas ?")
      */
     private $content;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"recipe"})
+     * @Assert\Length(min=0, minMessage="Le temps de préparation ne peut pas être inférieur à zéro minutes")
      */
     private $preparationTime;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"recipe"})
+     * @Assert\Length(min=0, minMessage="Le temps de cuisson ne peut pas être inférieur à zéro minutes")
      */
     private $cookingTime;
 
@@ -75,6 +86,7 @@ class Recipe
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"recipe"})
+     * @Assert\Url(message="L'URL entré n'est pas valide")
      */
     private $illustration;
 

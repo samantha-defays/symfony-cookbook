@@ -9,6 +9,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -28,6 +29,8 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"users"})
+     * @Assert\NotBlank(message="L'adresse email est obligatoire")
+     * @Assert\Email(message="Cette adresse email n'est pas valide")
      */
     private $email;
 
@@ -40,29 +43,36 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups({"users"})
+     * @Assert\NotBlank(message="Le mot de passe est obligatoire")
+     * @Assert\Length(min=8, minMessage="Le mot de passe doit faire au minimum 8 caractères")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users"})
+     * @Assert\NotBlank(message="Le prénom est obligatoire")
+     * @Assert\Length(min=2, minMessage="Le prénom ne doit pas faire moins de deux caractères")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users"})
+     * @Assert\NotBlank(message="Le nom de famille est obligatoire")
+     * @Assert\Length(min=2, minMessage="Le nom de famille ne peut pas faire moins de deux caractères")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"users"})
+     * @Assert\Url(message="L'URL n'est pas valide")
      */
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="owner", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="owner", cascade={"remove"}, orphanRemoval=true)
      */
     private $recipes;
 

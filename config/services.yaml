@@ -33,6 +33,15 @@ services:
             event: prePersist,
             }
 
+    App\Doctrine\Listener\UserPasswordChangeListener:
+        tags:
+        - {
+            name: doctrine.orm.entity_listener,
+            entity: App\Entity\User,
+            event: preUpdate,
+            }
+        
+
     App\Doctrine\Listener\RecipeOwnerListener:
         tags:
             - {

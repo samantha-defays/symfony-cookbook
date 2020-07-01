@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    Recette
+{% endblock %}
+{% block body %}
+    <h1>{{ recipe.title }}</h1>
+    <p><span class="badge badge-primary">Préparation: {{ recipe.preparationTime }} min.</span> | <span class="badge badge-warning">Cuisson: {{ recipe.cookingTime }} min</span> </p>
+    <img src="{{ recipe.illustration }}" alt="{{ recipe.title }}">
+    <div>{{ recipe.description | raw }}</div>
+    <div>{{ recipe.ingredients | raw}}</div>
+    <div>{{ recipe.utensils | raw }}</div>
+    <div>{{ recipe.content | raw }}</div>
+
+    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn btn-primary">
+    Editer</a>
+    <a href="{{ path('recipe_delete', {'id': recipe.id}) }}" class="btn btn-danger">Supprimer</a>
+    
+{% endblock %}

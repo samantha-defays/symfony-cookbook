@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration des recettes{% endblock %}
+
+{% block body %}
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Titre</td>
+            <td>Description</td>
+            <td>Posteur</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for recipe in recipes %}
+            <tr>
+                <td>{{ recipe.id }}</td>
+                <td>{{ recipe.title }}</td>
+                <td>{{ recipe.description | raw }}</td>
+                <td>{{ recipe.owner.firstName }} {{ recipe.owner.lastName }}</td>
+                <td>
+                <a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn btn-info">Voir</a>
+                <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn btn-primary">
+                    Editer
+                </a>
+                <a href="{{ path('recipe_delete', {'id': recipe.id}) }}" class="btn btn-danger">
+                    Supprimer
+                </a>
+            </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

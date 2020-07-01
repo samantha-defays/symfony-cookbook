@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration des catégories{% endblock %}
+
+{% block body %}
+    <h1>Catégories</h1>
+
+    <a class="btn btn-success" href="{{ path('category_create')}}">
+        Créer une nouvelle catégorie
+    </a>
+
+    <ul class="list-group">
+        {% for category in categories %}
+            <li class="list-group-item">
+                {{ category.name }} 
+                <span class="ml-auto">
+                    <a href="{{ path('category_edit', {'id': category.id }) }}" class="badge badge-primary">Editer</a> 
+                    <a href="{{ path('category_delete', {'id': category.id }) }}" class="badge badge-danger">Supprimer</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

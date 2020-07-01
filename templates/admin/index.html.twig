@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+<h1>MY COOKBOOK - DASHBOARD</h1>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-header">
+                Recettes
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ recipes | length }} recettes</h5>
+                <p class="card-text">Lorem ipsum</p>
+                <a href="{{ path('recipe_index') }}" class="btn btn-primary">Voir les recettes</a>
+            </div>
+            <div class="card-footer text-muted">
+                Dolor sit amet
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-header">
+                Catégories
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ categories | length }} catégories</h5>
+                <p class="card-text">Lorem ipsum</p>
+                <a href="{{ path('category_index')}}" class="btn btn-secondary">Voir les catégories</a>
+            </div>
+            <div class="card-footer text-muted">
+                Lorem ipsum
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-header">
+                Utilisateurs
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ users | length }} utilisateurs</h5>
+                <p class="card-text">Lorem ipsum</p>
+                <a href="#" class="btn btn-primary">Voir les utilisateurs</a>
+            </div>
+            <div class="card-footer text-muted">
+                sic mundus creatum est
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
