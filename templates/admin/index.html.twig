@@ -1,54 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block body %}
-<h1>MY COOKBOOK - DASHBOARD</h1>
-<div class="row">
-    <div class="col-sm-4">
-        <div class="card text-center">
-            <div class="card-header">
-                Recettes
+    <div class="main-panel">
+
+      {{ block('navbar', 'navbar.html.twig')}}
+
+      <div class="content">
+        <!-- FIRST ROW -->
+        <div class="row">
+
+        <!-- LARGE PICTURE -->
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <img src="../assets/img/cookbook2.jpg" alt="cookbook" width="100%">
+              </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ recipes | length }} recettes</h5>
-                <p class="card-text">Lorem ipsum</p>
-                <a href="{{ path('recipe_index') }}" class="btn btn-primary">Voir les recettes</a>
-            </div>
-            <div class="card-footer text-muted">
-                Dolor sit amet
-            </div>
+          </div>
+          <!-- end of column -->
         </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card text-center">
-            <div class="card-header">
-                Catégories
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Recettes</h5>
+                <h3 class="card-title"><i class="tim-icons icon-book-bookmark text-primary"></i> {{ recipes | length }} recettes</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="chartLinePurple"></canvas>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ categories | length }} catégories</h5>
-                <p class="card-text">Lorem ipsum</p>
-                <a href="{{ path('category_index')}}" class="btn btn-secondary">Voir les catégories</a>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Catégories</h5>
+                <h3 class="card-title"><i class="tim-icons icon-tag text-info"></i> {{ categories | length }} catégories</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="CountryChart"></canvas>
+                </div>
+              </div>
             </div>
-            <div class="card-footer text-muted">
-                Lorem ipsum
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Utilisateurs</h5>
+                <h3 class="card-title"><i class="tim-icons icon-single-02 text-danger"></i> {{ users | length }} utilisateurs</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="chartLineGreen"></canvas>
+                </div>
+              </div>
             </div>
+          </div>
+
         </div>
+        
+      </div>
+
     </div>
-    <div class="col-sm-4">
-        <div class="card text-center">
-            <div class="card-header">
-                Utilisateurs
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ users | length }} utilisateurs</h5>
-                <p class="card-text">Lorem ipsum</p>
-                <a href="#" class="btn btn-primary">Voir les utilisateurs</a>
-            </div>
-            <div class="card-footer text-muted">
-                sic mundus creatum est
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}

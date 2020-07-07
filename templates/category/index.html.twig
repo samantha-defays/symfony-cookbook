@@ -3,21 +3,36 @@
 {% block title %}Administration des catégories{% endblock %}
 
 {% block body %}
-    <h1>Catégories</h1>
+    <div class="main-panel">
 
-    <a class="btn btn-success" href="{{ path('category_create')}}">
-        Créer une nouvelle catégorie
-    </a>
-
-    <ul class="list-group">
-        {% for category in categories %}
-            <li class="list-group-item">
-                {{ category.name }} 
-                <span class="ml-auto">
-                    <a href="{{ path('category_edit', {'id': category.id }) }}" class="badge badge-primary">Editer</a> 
-                    <a href="{{ path('category_delete', {'id': category.id }) }}" class="badge badge-danger">Supprimer</a>
-                </span>
-            </li>
-        {% endfor %}
-    </ul>
+    {{ block('navbar', 'navbar.html.twig')}}
+        <div class="content">
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Nombre de recettes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td><span class="badge badge-primary">{{ category.id }}</span></td>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.recipes | length }}</td>
+                            <td>
+                                
+                                <a href="{{ path('category_edit', {'id': category.id }) }}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a> 
+                            
+                                <a href="{{ path('category_delete', {'id': category.id }) }}" class="btn btn-danger"><i class="fas fa-user-minus"></i></a>
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

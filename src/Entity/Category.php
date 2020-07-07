@@ -34,6 +34,7 @@ class Category
 
     /**
      * @ORM\ManyToMany(targetEntity=Recipe::class, mappedBy="categories")
+     * @Groups({"category"})
      */
     private $recipes;
 

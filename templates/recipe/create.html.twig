@@ -1,15 +1,103 @@
 {% extends "base.html.twig" %}
+
 {% block title %}
-    Création d'une nouvelle recette
+    Recette
 {% endblock %}
+
 {% block body %}
+    <div class="main-panel">
+        {{ block('navbar', 'navbar.html.twig')}}
+        <div class="content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="title">Créer une recette</h5>
+                        </div>
 
-<h1>Nouvelle recette</h1>
-{{ form_start(form) }}
-{{ form_widget(form) }}
+                        {{ form_start(form) }}
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5 pr-md-1">
+                                    <div class="form-group">
+                                        {{ form_row(form.title) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 px-md-1">
+                                    <div class="form-group">
+                                        {{form_row(form.preparationTime) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-md-1">
+                                    <div class="form-group">
+                                        {{ form_row(form.cookingTime) }}
+                                    </div>
+                                </div>
+                            </div>
 
-<button type="submit" class="btn btn-primary">Créer</button>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{form_row(form.illustration) }}
+                                    </div>
+                                </div>
+                            </div>
 
-{{ form_end(form) }}
-    
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form_row(form.description) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form_row(form.ingredients) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form_row(form.utensils)}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form_row(form.content) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{form_row(form.owner) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form_row(form.categories) }}
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-fill btn-primary">Enregistrer</button>
+                            </div>
+                        {{form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

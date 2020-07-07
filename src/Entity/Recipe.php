@@ -21,13 +21,13 @@ class Recipe
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\NotBlank(message="Le nom de la recette est obligatoire")
      * @Assert\Length(min=3, minMessage="Le nom de la recette ne peut pas faire moins de 3 caractères")
      */
@@ -35,7 +35,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\NotBlank(message="La description est obligatoire")
      * @Assert\Length(min=10, minMessage="La description ne peut pas faire moins de 10 caractères")
      */
@@ -43,7 +43,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\NotBlank(message="La liste des ingrédients est nécessaire")
      * @Assert\Length(min=10, minMessage="La description ne peut pas faire moins de 10 caractères")
      */
@@ -51,7 +51,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\NotBlank(message="Le détail de la recette est obligatoire")
      * @Assert\Length(min=10, minMessage="Une recette qui ferait moins de 10 caractères ne serait pas vraiment une recette, n'est-ce pas ?")
      */
@@ -59,39 +59,40 @@ class Recipe
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\Length(min=0, minMessage="Le temps de préparation ne peut pas être inférieur à zéro minutes")
      */
     private $preparationTime;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\Length(min=0, minMessage="Le temps de cuisson ne peut pas être inférieur à zéro minutes")
      */
     private $cookingTime;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      */
     private $utensils;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"recipe"})
+     * @Groups({"recipe", "category"})
      * @Assert\Url(message="L'URL entré n'est pas valide")
      */
     private $illustration;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
+     * @Groups({"recipe", "category"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $owner;

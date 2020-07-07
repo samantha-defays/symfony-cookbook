@@ -37,16 +37,16 @@ class AppFixtures extends AbstractFixture
         });
 
         // RECIPES
-        $this->createMany(Recipe::class, 40, function (Recipe $recipe) {
+        $this->createMany(Recipe::class, 100, function (Recipe $recipe) {
             $recipe->setTitle($this->faker->catchPhrase)
-                ->setDescription($this->faker->paragraphs(3, true))
-                ->setIngredients($this->faker->paragraphs(4, true))
-                ->setContent($this->faker->paragraphs(5, true))
-                ->setUtensils($this->faker->paragraphs(2, true))
+                ->setDescription($this->faker->paragraphs(1, true))
+                ->setIngredients($this->faker->paragraphs(2, true))
+                ->setContent($this->faker->paragraphs(4, true))
+                ->setUtensils($this->faker->words(mt_rand(2, 8), true))
                 ->setPreparationTime(mt_rand(5, 20))
                 ->setCookingTime(mt_rand(10, 40))
                 ->setCreatedAt($this->faker->dateTimeBetween('-4months'))
-                ->setIllustration("https://loremflickr.com/500/300/food")
+                ->setIllustration("https://loremflickr.com/500/300/food?random=" . mt_rand(1, 30))
                 ->addCategory($this->getRandomReference(Category::class))
                 ->setOwner($this->getRandomReference(User::class));
         });

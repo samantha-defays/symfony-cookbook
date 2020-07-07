@@ -1,39 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+            <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+            <!-- Nucleo Icons -->
+            <link href="{{ asset('../assets/css/nucleo-icons.css')}}" rel="stylesheet" />
+            <link href="{{ asset('../assets/css/black-dashboard.css')}}" rel="stylesheet" />
+            
+            {# <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css"> #}
         {% endblock %}
     </head>
-    <body>
-        <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">ADMIN</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('recipe_index')}}">Recettes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('category_index')}}">Catégories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_index')}}">Utilisateurs</a>
-                </li>
-                </ul>
-            </div>
-        </nav>
-        </header>
-        <div class="container mt-5 mb-5">
+    <body class="white-content">
+        <div class="wrapper">
             {% block body %}{% endblock %}
         </div>
+        {% if app.user %}
+            <div class="sidebar">
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                    <a href="javascript:void(0)" class="simple-text logo-mini">
+                        <i class="tim-icons icon-shape-star"></i>
+                    </a>
+                    <a href="http://localhost:4200" target="_blank" class="simple-text logo-normal">
+                        My Cookbook
+                    </a>
+                    </div>
+                    <ul class="nav">
+                    <li>
+                        <a href="{{ path('admin_dashboard') }}">
+                        <i class="tim-icons icon-chart-pie-36"></i>
+                        <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('recipe_index') }}">
+                        <i class="tim-icons icon-book-bookmark"></i>
+                        <p>Recettes</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('recipe_create') }}">
+                            <i class="tim-icons icon-simple-add"></i>
+                            <p>Nouvelle recette</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('category_index')}}">
+                        <i class="tim-icons icon-tag"></i>
+                        <p>Catégories</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('category_create') }}">
+                            <i class="tim-icons icon-simple-add"></i>
+                            <p>Nouvelle catégorie</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('user_index')}}">
+                        <i class="tim-icons icon-single-02"></i>
+                        <p>Utilisateurs</p>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
         
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="https://kit.fontawesome.com/ca393c0718.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('../assets/js/core/jquery.min.js')}}"></script>
+            <script src="{{ asset('../assets/js/core/popper.min.js')}}"></script>
+            <script src="{{ asset('../assets/js/core/bootstrap.min.js')}}"></script>
+            <script src="{{ asset('../assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+            <script src="{{ asset('../assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+            <script src="{{ asset('../assets/js/black-dashboard.min.js?v=1.0.0')}}"></script>
+            <script src="{{ asset('../assets/js/plugins/chartjs.min.js')}}"></script>
+            
+        {% endblock %}
     </body>
 </html>

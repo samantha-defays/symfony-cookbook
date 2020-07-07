@@ -47,13 +47,15 @@ class RecipeType extends AbstractType
                 'label' => "Temps de préparation (en minutes)",
                 'attr' => [
                     'placeholder' => "Temps de préparation (en min)"
-                ]
+                ],
+                'required' => false,
             ])
             ->add('cookingTime', IntegerType::class, [
                 'label' => "Temps de cuisson (en minutes)",
                 'attr' => [
                     'placeholder' => "Temps de cuisson (en min)"
-                ]
+                ],
+                'required' => false,
             ])
             ->add('utensils', TextareaType::class, [
                 'label' => "Ustensiles nécessaires",
@@ -65,7 +67,8 @@ class RecipeType extends AbstractType
                 'label' => "URL de la photo",
                 'attr' => [
                     'placeholder' => "URL de la photo d'illustration"
-                ]
+                ],
+                'required' => false,
             ])
             ->add('owner', EntityType::class, [
                 'label' => "Utilisateur",
@@ -79,7 +82,7 @@ class RecipeType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'expanded' => true,
+                'required' => false,
                 'by_reference' => false,
             ]);
     }

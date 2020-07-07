@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration des utilisateurs{% endblock %}
+
+{% block body %}
+    
+    <div class="main-panel">
+
+        {{ block('navbar', 'navbar.html.twig')}}
+
+        <div class="content">
+            <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Editer le profil</h5>
+                </div>
+                {{form_start(form)}}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 pr-md-1">
+                        {{ form_row(form.firstName)}}
+                        </div>
+                        <div class="col-md-6 pl-md-1">
+                        {{form_row(form.lastName)}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        {{ form_row(form.email)}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        {{ form_row(form.photo)}}
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.roles) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-fill btn-primary">Enregistrer</button>
+                </div>
+                {{ form_end(form)}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                <div class="card-body">
+                    <p class="card-text">
+                    <div class="author">
+                        <div class="block block-one"></div>
+                        <div class="block block-two"></div>
+                        <div class="block block-three"></div>
+                        <div class="block block-four"></div>
+                        <img class="avatar" src="{{ user.photo }}" alt="{{ user.firstName }} {{ user.lastName }}">
+                        <h5 class="title">{{ user.email }}</h5>
+                        <p class="description">
+                        <span class="text-primary"> {{ user.firstName }} {{ user.lastName }}</span> a créé {{ user.recipes | length }} délicieuses recettes depuis son inscription sur le site.
+                        </p>
+                    </div>
+                    </p>
+                </div>
+                
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

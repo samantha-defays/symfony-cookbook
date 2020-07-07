@@ -1,16 +1,38 @@
-{% extends "base.html.twig" %}
-{% block title %}
-    Nouvelle Catégorie
-{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle catégorie{% endblock %}
+
 {% block body %}
-
-<h1>Nouvelle catégorie</h1>
-
-{{ form_start(form) }}
-{{ form_widget(form) }}
-
-<button type="submit" class="btn btn-primary">Créer</button>
-
-{{ form_end(form) }}
-    
+    <div class="main-panel">
+        <div class="content">
+        <div class="container">
+        <div class="row">
+        
+          <div class="offset-md-2 col-md-6 d-flex flex-column justify-content-center align-items-center" style="height:90vh;">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Nouvelle catégorie</h5>
+              </div>
+              <div class="card-body">
+                {{ form_start(form) }}
+        
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        {{ form_row(form.name)}}
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-fill btn-primary btn-block">Enregistrer</button>
+              </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}
