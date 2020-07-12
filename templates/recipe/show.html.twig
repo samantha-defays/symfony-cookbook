@@ -1,43 +1,150 @@
-{% extends "base.html.twig" %}
-{% block title %}
-    Recette
-{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette{% endblock %}
+
 {% block body %}
-<div class="main-panel">
+    <div class="main-panel">
 
-{{ block('navbar', 'navbar.html.twig')}}
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                <h1>Titre: {{ recipe.title }}</h1>
-                    <p><span class="badge badge-primary">Préparation: {{ recipe.preparationTime }} min.</span> | <span class="badge badge-warning">Cuisson: {{ recipe.cookingTime }} min</span> </p>
-                    {% if recipe.illustration %}
-                        <img src="{{ recipe.illustration }}" alt="{{ recipe.title }}">
-                    {% endif %}
-                    <div>
-                        <h4>Description:</h4> 
-                        {{ recipe.description }}
-                    </div>
-                    <div>
-                        <h4>Ingrédients:</h4>
-                        {{ recipe.ingredients | raw}}
-                    </div>
-                    <div>
-                        <h4>Ustensiles:</h4>
-                        {{ recipe.utensils | raw }}
-                    </div>
-                    <div>
-                        <h4>Etapes:</h4>
-                        {{ recipe.content | raw }}
-                    </div>
+      {{ block('navbar', 'navbar.html.twig')}}
 
-                    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn btn-primary">
-                    Editer</a>
-                    <a href="{{ path('recipe_delete', {'id': recipe.id}) }}" class="btn btn-danger">Supprimer</a>
-                </div>
+      <div class="content">
+        
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Titre</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <blockquote class="blockquote mb-0">
+                    {{ recipe.title }}
+                  </blockquote>
+                </p>
+              </div>
             </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Catégories</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  {% for c in recipe.categories %}
+                      <span class="badge badge-primary mr-1">{{ c.name }}</span>
+                  {% endfor %}
+                </bloquote>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Temps</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>{{recipe.preparationTime}} min de préparation, {{recipe.cookingTime}} min de préparation</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Description</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  {{ recipe.description }}
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Ingrédients</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <div>{{ recipe.ingredients | raw }}</div>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Ustensiles</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    {{ recipe.utensils | raw }}
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Etapes</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    {{ recipe.content }}
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Illustration</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  {% if recipe.illustration %}
+                      <img src="{{ recipe.illustration }}" alt="{{recipe.title}}">
+                  {% endif %}
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Infos complémentaires</h5>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>Créée par {{ recipe.owner.firstName }} {{ recipe.owner.lastName }}, le {{ recipe.createdAt | date("m/d/Y") }}</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+
     </div>
-</div> 
 {% endblock %}

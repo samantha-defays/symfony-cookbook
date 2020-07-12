@@ -2,5 +2,7 @@ App\Entity\User:
   attributes:
     denormalization_context:
       groups: "users"
-  collectionOperations: [POST, GET]
+  collectionOperations:
+    post: ~
+
   itemOperations: [GET, PUT]
